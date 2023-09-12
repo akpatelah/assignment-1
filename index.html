@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <section>
+        <h2 class="heading">Clothing for Men and Women</h2>
+        <div class="card-container" id="clothcard">
+        </div>
+    </section>
+
+    <section>
+        <h2 class="heading">Accessories for Men and Women</h2>
+        <div class="card-container" id="accessorycard">
+        </div>
+    </section>
+
+</body>
+<script>
+    var datas = fetch('data.json').then((res) => res.json()).then((data) => {
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].isAccessory) {
+                let name = data[i].name;
+                let pre = data[i].preview;
+                let brand = data[i].brand
+                let price = data[i].price;
+                // console.log(name);
+                document.querySelector("#accessorycard").innerHTML +=
+                    `
+                <div class="card">
+                    <div class="img">
+                        <img src="${pre}" alt="">
+                        </div>
+                <div class="details">
+                    <h3>${name}</h3>
+                    <h4>${brand}</h4>
+                    <h5>Rs ${price}</h5>
+                    </div>
+                    </div>`
+            } else {
+                // console.log("data:- ", data)
+                let name = data[i].name;
+                let pre = data[i].preview;
+                let brand = data[i].brand
+                let price = data[i].price;
+                // console.log(name);
+                document.querySelector("#clothcard").innerHTML +=
+                    `
+                <div class="card">
+                    <div class="img">
+                        <img src="${pre}" alt="">
+                        </div>
+                <div class="details">
+                    <h3>${name}</h3>
+                    <h4>${brand}</h4>
+                    <h5>Rs ${price}</h5>
+                    </div>
+                    </div>`
+            }
+        }
+
+    })
+
+</script>
+
+</html>
